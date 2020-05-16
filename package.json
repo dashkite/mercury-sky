@@ -1,0 +1,30 @@
+{
+  "name": "@dashkite/mercury-sky",
+  "version": "0.0.0",
+  "description": "Mercury (HTTP) combinators for use with Sky APIs",
+  "keywords": [],
+  "homepage": "https://github.com/dashkite/mercury-sky#readme",
+  "bugs": {
+    "url": "https://github.com/dashkite/mercury-sky/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dashkite/mercury-sky.git"
+  },
+  "license": "SEE LICENSE IN LICENSE.md",
+  "author": "",
+  "main": "build/npm/src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "files": [
+    "build/npm/src"
+  ],
+  "scripts": {
+    "test": "p9k test"
+  },
+  "devDependencies": {
+    "panda-9000": "^5.0.2",
+    "panda-builder": "^4.0.13"
+  }
+}

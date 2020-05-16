@@ -1,2 +1,3 @@
-# mercury-sky
-Sky combinators for use with Mercury
+# Mercury-Sky
+
+Mercury (HTTP) combinators for use with Sky APIs.
