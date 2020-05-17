@@ -27,6 +27,7 @@ Sky =
     expect.ok
     cast expect.status, [ accessors.expect.status ]
     cast expect.media, [ accessors.expect.media ]
+    # TODO add combinators to verify headers
   ]
 
 export default Sky

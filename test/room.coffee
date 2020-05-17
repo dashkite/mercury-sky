@@ -9,7 +9,8 @@ import Profile from "@dashkite/zinc"
 
 import Sky from "../src/index"
 import {cast, use, parameters, content, accept, authorize,
-  cache, text, json, data, Fetch, Zinc} from "../src/mercury"
+  cache, text, json, data, Fetch} from "../src/mercury"
+import Zinc from "../src/zinc"
 
 global.fetch = fetch
 
