@@ -14,8 +14,11 @@ failure = do ({codes, message} = {}) ->
     "unsupported media type": ({response})->
       "unsupported media type: #{response.headers['content-type']}"
 
-  (code, context) ->
-    message = codes[code] context
+    "expected header": (header) ->
+      "expected response header: #{header}"
+
+  (code, args...) ->
+    message = codes[code] args...
     new Error "Mercury: #{message}"
 
 export default failure

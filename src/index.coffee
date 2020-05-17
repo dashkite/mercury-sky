@@ -18,15 +18,6 @@ accessors =
     media: (context) -> "application/json" if (property "schema", _Rs context)?
     status: (context) -> property "status", _Rs context
 
-
-builders =
-  template: cast template, [ accessors.template ]
-  accept: cast accept, [ accessors.accept ]
-  media: cast media, [ accessors.media ]
-  expect:
-    media: cast expect.media, [ accessors.expect.media ]
-    status: cast expect.status, [ accessors.expect.status ]
-
 discover = flow [
   use Fetch.client mode: "cors"
   cast url, [ property "data" ]
@@ -47,29 +38,21 @@ Sky =
 
   resource: curry binary flow [
     rtee (value, context) -> context.resource = value
-    builders.template
-    # default the URL based on empty parameters
+    cast template, [ accessors.template ]
     parameters {}
   ]
 
   method: curry binary flow [
     method
-    builders.accept
-    builders.media
+    cast accept, [ accessors.accept ]
+    cast media, [ accessors.media ]
   ]
-
-  # TODO check for expected headers
-  #      see: https://github.com/
-  #           pandastrike/panda-sky-client/
-  #           blob/master/src/method.coffee#L33-L47
-  #
-  # TODO validate/correct auth header? or allow auth property?
 
   request: flow [
     request
-    builders.expect.status
     expect.ok
-    builders.expect.media
+    cast expect.status, [ accessors.expect.status ]
+    cast expect.media, [ accessors.expect.media ]
   ]
 
 export default Sky
