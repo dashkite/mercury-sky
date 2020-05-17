@@ -1,6 +1,6 @@
-import {curry, tee, rtee, flow} from "panda-garden"
+import {curry, binary, spread, tee, rtee, flow} from "panda-garden"
 import {property} from "panda-parchment"
-import {cast, use, url, base, template,parameters, method, accept, media,
+import {cast, use, url, base, template, parameters, method, accept, media,
   cache, request, expect, json, Fetch} from "./mercury"
 
 accessors =
@@ -41,20 +41,22 @@ discover = flow [
 
 Sky =
 
-  discover: curry rtee (url, context) ->
+  discover: curry (url, context) ->
     context.api = await discover url
     base url, context
 
-  resource: curry rtee (value, context) ->
-    context.resource = value
-    await builders.template context
+  resource: curry binary flow [
+    rtee (value, context) -> context.resource = value
+    builders.template
     # default the URL based on empty parameters
-    parameters {}, context
+    parameters {}
+  ]
 
-  method: curry rtee (value, context) ->
-    context.method = value
-    await builders.accept context
-    builders.media context
+  method: curry binary flow [
+    method
+    builders.accept
+    builders.media
+  ]
 
   # TODO check for expected headers
   #      see: https://github.com/
@@ -63,10 +65,11 @@ Sky =
   #
   # TODO validate/correct auth header? or allow auth property?
 
-  request: tee (context) ->
-    await request context
-    await builders.expect.status context
-    await expect.ok context
-    builders.expect.media context
+  request: flow [
+    request
+    builders.expect.status
+    expect.ok
+    builders.expect.media
+  ]
 
 export default Sky

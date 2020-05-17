@@ -76,7 +76,7 @@ expect =
       if ! ((context.response.headers.get "content-type") == value)
         throw failure "unsupported media type", context
 
-  ok: (context) ->
+  ok: tee (context) ->
     if !context.response.ok
       console.log context
       throw failure "not ok", context
