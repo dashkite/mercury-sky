@@ -1,10 +1,20 @@
-import {curry, rtee, flow} from "panda-garden"
+import "source-map-support/register"
+import {curry, tee, rtee, flow} from "panda-garden"
 import {property} from "panda-parchment"
-import {cast, use, url, method, accept, cache, request, json} from "./mercury"
+import {cast, use, url, base, template,parameters, method, accept, media,
+  cache, request, expect, json, Fetch} from "./mercury"
+
+log = (f) ->
+  (context) ->
+    console.log {context}
+    f context
 
 accessors =
-  template: ({api, resource}) -> property "template", api?[resource]
-  method: _M = ({api, resource, method}) -> api[resource][method]
+  resources: _Rx = ({api, resource}) -> property "resources", api
+  resource: _R = (context) -> property context.resource, _Rx context
+  template: (context) -> property "template", _R context
+  methods: _Mx = (context) -> property "methods", _R context
+  method: _M = (context) -> property context.method, _Mx context
   signatures: _S = (context) -> property "signatures", _M context
   request: _Rq = (context) -> property "request", _S context
   response: _Rs = (context) -> property "response", _S context
@@ -13,6 +23,9 @@ accessors =
   expect:
     media: (context) -> "application/json" if (property "schema", _Rs context)?
     status: (context) -> property "status", _Rs context
+
+
+maybe = (f) ->
 
 builders =
   template: cast template, [ accessors.template ]
@@ -23,11 +36,11 @@ builders =
     status: cast expect.status, [ accessors.expect.status ]
 
 discover = flow [
-  use Fetch mode: "cors"
+  use Fetch.client mode: "cors"
   cast url, [ property "data" ]
   method "get"
   accept "application/json"
-  cache [
+  cache flow [
     request
     json
     property "json"
@@ -38,17 +51,23 @@ Sky =
 
   discover: curry rtee (url, context) ->
     context.api = await discover url
+    base url, context
 
   resource: curry rtee (value, context) ->
     context.resource = value
-    builders.template context
+    await builders.template context
+    # default the URL based on empty parameters
+    parameters {}, context
 
   method: curry rtee (value, context) ->
     context.method = value
-    builders.accept context
+    await builders.accept context
     builders.media context
 
   request: tee (context) ->
-    request context
-    builders.expect context
+    await request context
+    await builders.expect.status context
+    await expect.ok context
     builders.expect.media context
+
+export default Sky

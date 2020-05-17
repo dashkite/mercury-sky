@@ -24,7 +24,19 @@
     "test": "p9k test"
   },
   "devDependencies": {
+    "amen": "^3.0.0",
+    "fake-indexeddb": "^3.0.0",
+    "faker": "^4.1.0",
+    "node-fetch": "^2.6.0",
     "panda-9000": "^5.0.2",
-    "panda-builder": "^4.0.13"
+    "panda-builder": "^4.0.13",
+    "source-map-support": "^0.5.19"
+  },
+  "dependencies": {
+    "@dashkite/katana": "0.0.5",
+    "@dashkite/zinc": "0.0.9",
+    "panda-garden": "^5.0.0",
+    "panda-parchment": "^6.0.3",
+    "url-template": "^2.0.8"
   }
 }
