@@ -27,24 +27,20 @@ do ->
       description: "sky test"
       wait: false
       ->
-        console.log "create room ..."
         {room} = await Room.create
           title: titleCase faker.lorem.words()
           blurb: faker.lorem.sentence()
         assert room.created
-        console.log "... room created"
 
-        console.log "set title ..."
         await Room.Title.put
           title: titleCase faker.lorem.words()
           address: room.address
-        console.log "... title set"
 
-        console.log "get messages ..."
         messages = await Room.Messages.get
           address: room.address
           after: (new Date).toISOString()
         assert Array.isArray messages
-        console.log "... got messages."
 
   ]
+
+  process.exit if success then 0 else 1

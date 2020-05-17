@@ -1,10 +1,13 @@
 import {curry, binary, rtee, flow} from "panda-garden"
-import {cast, base, template, parameters, method, accept, media,
-  request, expect} from "./mercury"
+import {base, template, parameters, method, accept, media,
+  request, expect} from "@dashkite/mercury"
+import {cast} from "@dashkite/katana"
 import accessors from "./accessors"
 import discover from "./discover"
 
 Sky =
+
+  cast: cast
 
   discover: curry (url, context) ->
     context.api = await discover url

@@ -6,11 +6,12 @@ import fetch from "node-fetch"
 import {identity, tee, flow} from "panda-garden"
 import {property} from "panda-parchment"
 import Profile from "@dashkite/zinc"
+import {cast} from "@dashkite/katana"
+import {use, parameters, content, accept, authorize,
+  cache, text, json, data, Fetch} from "@dashkite/mercury"
+import Zinc from "@dashkite/mercury-zinc"
 
 import Sky from "../src/index"
-import {cast, use, parameters, content, accept, authorize,
-  cache, text, json, data, Fetch} from "../src/mercury"
-import Zinc from "../src/zinc"
 
 global.fetch = fetch
 
@@ -18,7 +19,6 @@ global.fetch = fetch
 
 {discover, resource, method, request} = Sky
 {grants, claim, sigil} = Zinc
-
 
 generateAddress = ->
   convert

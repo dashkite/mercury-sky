@@ -1,7 +1,8 @@
 import {flow} from "panda-garden"
 import {property} from "panda-parchment"
-import {cast, use, url, method, accept,
-  cache, request, json, Fetch} from "./mercury"
+import {use, url, method, accept,
+  cache, request, json, Fetch} from "@dashkite/mercury"
+import {cast} from "@dashkite/katana"
 
 discover = flow [
   use Fetch.client mode: "cors"
