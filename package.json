@@ -1,6 +1,6 @@
 {
   "name": "@dashkite/mercury-sky",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Mercury (HTTP) combinators for use with Sky APIs",
   "keywords": [],
   "homepage": "https://github.com/dashkite/mercury-sky#readme",
