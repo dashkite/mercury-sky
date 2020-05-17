@@ -1,13 +1,7 @@
-import "source-map-support/register"
 import {curry, tee, rtee, flow} from "panda-garden"
 import {property} from "panda-parchment"
 import {cast, use, url, base, template,parameters, method, accept, media,
   cache, request, expect, json, Fetch} from "./mercury"
-
-log = (f) ->
-  (context) ->
-    console.log {context}
-    f context
 
 accessors =
   resources: _Rx = ({api, resource}) -> property "resources", api
@@ -24,8 +18,6 @@ accessors =
     media: (context) -> "application/json" if (property "schema", _Rs context)?
     status: (context) -> property "status", _Rs context
 
-
-maybe = (f) ->
 
 builders =
   template: cast template, [ accessors.template ]
@@ -63,6 +55,13 @@ Sky =
     context.method = value
     await builders.accept context
     builders.media context
+
+  # TODO check for expected headers
+  #      see: https://github.com/
+  #           pandastrike/panda-sky-client/
+  #           blob/master/src/method.coffee#L33-L47
+  #
+  # TODO validate/correct auth header? or allow auth property?
 
   request: tee (context) ->
     await request context

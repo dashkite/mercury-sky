@@ -1,3 +1,4 @@
+import "source-map-support/register"
 import assert from "assert"
 import {print, test, success} from "amen"
 
@@ -33,9 +34,11 @@ do ->
         assert room.created
         console.log "... room created"
 
-        # await Room.Title.put
-        #   title: titleCase faker.lorem.words()
-        #   address: room.address
+        console.log "set title ..."
+        await Room.Title.put
+          title: titleCase faker.lorem.words()
+          address: room.address
+        console.log "... title set"
 
         console.log "get messages ..."
         messages = await Room.Messages.get
