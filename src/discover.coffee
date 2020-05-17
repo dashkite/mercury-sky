@@ -1,5 +1,5 @@
 import {flow} from "panda-garden"
-import {property} from "panda-parchment"
+import property from "./property"
 import {use, url, method, accept,
   cache, request, json, Fetch} from "@dashkite/mercury"
 import {cast} from "@dashkite/katana"

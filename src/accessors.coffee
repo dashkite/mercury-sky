@@ -1,4 +1,4 @@
-import {property} from "panda-parchment"
+import property from "./property"
 
 resources = ({api, resource}) -> property "resources", api
 

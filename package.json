@@ -32,13 +32,13 @@
     "node-fetch": "^2.6.0",
     "panda-9000": "^5.0.2",
     "panda-builder": "^4.0.13",
+    "panda-parchment": "^6.0.3",
     "source-map-support": "^0.5.19"
   },
   "dependencies": {
     "@dashkite/katana": "0.0.6",
     "@dashkite/mercury": "0.0.12",
     "panda-garden": "^5.0.0",
-    "panda-parchment": "^6.0.3",
     "url-template": "^2.0.8"
   }
 }
