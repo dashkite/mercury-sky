@@ -94,5 +94,13 @@ Room =
         json
         property "json"
       ]
+    # this should throw b/c put is not supported
+    put:
+      flow [
+        initialize
+        resource "messages"
+        method "put"
+      ]
+
 
 export default Room

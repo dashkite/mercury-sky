@@ -41,6 +41,7 @@ do ->
           after: (new Date).toISOString()
         assert Array.isArray messages
 
+        assert.rejects (-> Room.Messages.put()), /not allowed/
   ]
 
   process.exit if success then 0 else 1

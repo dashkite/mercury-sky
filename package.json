@@ -27,7 +27,7 @@
     "@dashkite/mercury-zinc": "0.0.1",
     "@dashkite/zinc": "0.0.9",
     "amen": "^3.0.0",
-    "fake-indexeddb": "^3.0.0",
+    "fake-indexeddb": "^3.0.1",
     "faker": "^4.1.0",
     "node-fetch": "^2.6.0",
     "panda-9000": "^5.0.2",
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@dashkite/katana": "0.0.6",
-    "@dashkite/mercury": "0.0.12",
+    "@dashkite/mercury": "^0.0.17",
     "panda-garden": "^5.0.0",
     "url-template": "^2.0.8"
   }

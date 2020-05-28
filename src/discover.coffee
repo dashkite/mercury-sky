@@ -13,6 +13,7 @@ discover = flow [
     request
     json
     property "json"
+    property "resources"
   ]
 ]
 

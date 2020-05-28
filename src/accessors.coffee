@@ -1,8 +1,6 @@
 import property from "./property"
 
-resources = ({api, resource}) -> property "resources", api
-
-resource = (context) -> property context.resource, resources context
+resource = (context) -> property context.resource, context.api
 
 template = (context) -> property "template", resource context
 
@@ -29,7 +27,7 @@ expect =
 
   status: (context) -> property "status", response context
 
-accessors = {resources, resource, template, methods, method,
+accessors = {resource, template, methods, method,
   signatures, request, response, accept, media, expect}
 
 export default accessors
