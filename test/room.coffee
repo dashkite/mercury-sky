@@ -4,11 +4,10 @@ import {print, test, success} from "amen"
 import fetch from "node-fetch"
 
 import {identity, tee, flow} from "panda-garden"
-import {property} from "panda-parchment"
+import property from "../src/property"
 import Profile from "@dashkite/zinc"
-import {cast} from "@dashkite/katana"
-import {use, parameters, content, accept, authorize,
-  cache, text, json, data, Fetch} from "@dashkite/mercury"
+import {use, parameters, content, accept, from, data, authorize,
+  cache, text, json, Fetch} from "@dashkite/mercury"
 import Zinc from "@dashkite/mercury-zinc"
 
 import Sky from "../src/index"
@@ -37,6 +36,7 @@ initialize =
   flow [
     use Fetch.client mode: "cors"
     discover "https://http-test.dashkite.com"
+    # discover "https://storm-api.dashkite.com"
   ]
 
 Key =
@@ -57,43 +57,69 @@ Key =
 Room =
 
   create:
+
     flow [
       generateRoom
       initialize
       resource "rooms"
-      cast content, [ property "data" ]
+      from [
+        property "data"
+        content
+      ]
       method "post"
-      cast authorize, [ sigil ]
+      from [
+        sigil
+        authorize
+      ]
       request
       json
-      cast grants, [ Key.get ]
+      from [
+        Key.get
+        grants
+      ]
       property "json"
     ]
 
-  Title:
-    put:
-      flow [
-        initialize
-        resource "title"
-        method "put"
-        cast parameters, [ data ({address}) -> {address} ]
-        cast content, [ data ({title}) -> {title} ]
-        cast authorize, [ claim ]
-        request
+  patch:
+    flow [
+      initialize
+      resource "room"
+      method "patch"
+      from [
+        data [ "address" ]
+        parameters
       ]
+      from [
+        data [ "title" ]
+        content
+      ]
+      from [
+        claim
+        authorize
+      ]
+      request
+    ]
 
   Messages:
+
     get:
       flow [
         initialize
         resource "messages"
         method "get"
-        cast parameters, [ property "data" ]
-        cast authorize, [ claim ]
+        from [
+          property "data"
+          parameters
+        ]
+        from [
+          claim
+          authorize
+        ]
         request
         json
         property "json"
       ]
+
     # this should throw b/c put is not supported
     put:
       flow [

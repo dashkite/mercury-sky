@@ -27,17 +27,17 @@
     "@dashkite/mercury-zinc": "0.0.1",
     "@dashkite/zinc": "0.0.9",
     "amen": "^3.0.0",
-    "fake-indexeddb": "^3.0.1",
+    "fake-indexeddb": "^3.0.2",
     "faker": "^4.1.0",
     "node-fetch": "^2.6.0",
-    "panda-9000": "^5.0.2",
+    "panda-9000": "^5.0.3",
     "panda-builder": "^4.0.13",
     "panda-parchment": "^6.0.3",
     "source-map-support": "^0.5.19"
   },
   "dependencies": {
-    "@dashkite/katana": "0.0.6",
-    "@dashkite/mercury": "^0.0.17",
+    "@dashkite/katana": "0.0.9",
+    "@dashkite/mercury": "0.0.20",
     "panda-garden": "^5.0.0",
     "url-template": "^2.0.8"
   }

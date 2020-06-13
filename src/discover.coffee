@@ -1,12 +1,14 @@
 import {flow} from "panda-garden"
 import property from "./property"
 import {use, url, method, accept,
-  cache, request, json, Fetch} from "@dashkite/mercury"
-import {cast} from "@dashkite/katana"
+  cache, from, request, json, Fetch} from "@dashkite/mercury"
 
 discover = flow [
   use Fetch.client mode: "cors"
-  cast url, [ property "data" ]
+  from [
+    property "data"
+    url
+  ]
   method "get"
   accept "application/json"
   cache flow [

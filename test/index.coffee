@@ -32,7 +32,7 @@ do ->
           blurb: faker.lorem.sentence()
         assert room.created
 
-        await Room.Title.put
+        await Room.patch
           title: titleCase faker.lorem.words()
           address: room.address
 
