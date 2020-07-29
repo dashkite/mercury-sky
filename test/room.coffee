@@ -14,21 +14,12 @@ import Sky from "../src/index"
 
 global.fetch = fetch
 
-{convert, randomBytes} = Profile.Confidential
-
 {discover, resource, method, request} = Sky
 {grants, claim, sigil} = Zinc
 
-generateAddress = ->
-  convert
-    from: "bytes"
-    to: "safe-base64"
-    await randomBytes 16
-
 generateRoom = ({title, blurb, host}) ->
   profile = await Profile.current
-  {publicKeys, data: {nickname}} = profile
-  address = await generateAddress()
+  {address, publicKeys, data: {nickname}} = profile
   {title, blurb, host: nickname, address, publicKeys}
 
 initialize =
@@ -68,14 +59,14 @@ Room =
       ]
       method "post"
       from [
-        sigil
+        sigil "http-test.dashkite.com"
         authorize
       ]
       request
       json
       from [
         Key.get
-        grants
+        grants "http-test.dashkite.com"
       ]
       property "json"
     ]
@@ -94,7 +85,7 @@ Room =
         content
       ]
       from [
-        claim
+        claim "http-test.dashkite.com"
         authorize
       ]
       request
@@ -112,7 +103,7 @@ Room =
           parameters
         ]
         from [
-          claim
+          claim "http-test.dashkite.com"
           authorize
         ]
         request

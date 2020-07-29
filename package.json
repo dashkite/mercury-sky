@@ -24,8 +24,8 @@
     "test": "p9k test"
   },
   "devDependencies": {
-    "@dashkite/mercury-zinc": "0.0.1",
-    "@dashkite/zinc": "0.0.9",
+    "@dashkite/mercury-zinc": "file:../mercury-zinc",
+    "@dashkite/zinc": "file:../zinc",
     "amen": "^3.0.0",
     "fake-indexeddb": "^3.0.2",
     "faker": "^4.1.0",
