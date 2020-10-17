@@ -1,4 +1,4 @@
-import {flow} from "panda-garden"
+import {flow} from "@pandastrike/garden"
 import property from "./property"
 import {use, url, method, accept,
   cache, from, request, json, Fetch} from "@dashkite/mercury"

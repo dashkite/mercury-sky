@@ -1,4 +1,4 @@
-import {curry} from "panda-garden"
+import {curry} from "@pandastrike/garden"
 
 property = curry (name, value) -> value[name]
 

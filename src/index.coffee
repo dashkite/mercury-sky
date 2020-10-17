@@ -1,4 +1,4 @@
-import {curry, binary, rtee, tee, flow} from "panda-garden"
+import {curry, binary, rtee, tee, flow} from "@pandastrike/garden"
 import {base, template, parameters, method, accept, media, from,
   request, expect} from "@dashkite/mercury"
 import accessors from "./accessors"
