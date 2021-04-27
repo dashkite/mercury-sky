@@ -1,65 +1,55 @@
-import {curry, binary, rtee, tee, flow} from "panda-garden"
-import {base, template, parameters, method, accept, media, from,
-  request, expect} from "@dashkite/mercury"
-import accessors from "./accessors"
-import discover from "./discover"
+import * as _ from "@dashkite/joy"
+import * as m from "@dashkite/mercury"
+import * as k from "@dashkite/katana"
+import * as ks from "@dashkite/katana/sync"
+import * as a from "./accessors"
+import {
+  setter
+  discover as _discover
+  allowed
+  failure
+} from "./helpers"
 
-failure = (code, context) ->
-  error = switch code
-    when "method not allowed"
-      new Error "Mercury Sky: method [#{context.method}]
-        not allowed for [#{context.resource}]"
-    else
-      new Error "Mercury Sky: #{code}"
+discover = setter.async k.assign _.flow [
+  m.base
+  k.push _discover
+  k.write "api"
+]
 
-  # TODO if we add more errors, remember to add response/status
-  error.context = context
-  error
+resource = setter.sync ks.assign _.pipe [
+  ks.write "resource"
+  a.template
+  m.template
+]
 
-allowed = tee (context) ->
-  if !(accessors.method context)?
-    throw failure "method not allowed", context
+method = setter.sync ks.assign _.pipe [
 
-Sky =
+  m.method
 
-  discover: curry (url, context) ->
-    context.api = await discover url
-    base url, context
+  a.methods
 
-  resource: curry binary flow [
-    rtee (value, context) -> context.resource = value
-    from [
-      accessors.template
-      template
-    ]
-    parameters {}
+  ks.poke _.keys
+  ks.test (_.negate _.flip _.includes), _.pipe [
+    k.context
+    k.peek failure "method not allowed"
   ]
 
-  method: curry binary flow [
-    method
-    allowed
-    from [
-      accessors.accept
-      accept
-    ]
-    from [
-      accessors.media
-      media
-    ]
-  ]
+  a.accept
+  m.accept
+  m.expect.media
 
-  request: flow [
-    request
-    expect.ok
-    from [
-      accessors.expect.status
-      expect.status
-    ]
-    from [
-      accessors.expect.media
-      expect.media
-    ]
-    # TODO add combinators to verify headers
-  ]
+  a.media
+  m.media
 
-export default Sky
+  a.status
+  m.expect.status
+
+  # TODO add combinators to verify headers
+
+]
+
+export {
+  discover
+  resource
+  method
+}

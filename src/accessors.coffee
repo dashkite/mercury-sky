@@ -1,33 +1,59 @@
-import property from "./property"
+import * as _ from "@dashkite/joy"
+import * as k from "@dashkite/katana/sync"
 
-resource = (context) -> property context.resource, context.api
+resource = _.pipe [
+  k.read "api"
+  k.poke _.get "resources"
+  k.read "resource"
+  k.mpoke _.get
+]
 
-template = (context) -> property "template", resource context
+template = _.pipe [ resource, k.poke _.get "template" ]
 
-methods = (context) -> property "methods", resource context
+methods = _.pipe [ resource, k.poke _.get "methods" ]
 
-method = (context) -> property context.method, methods context
+method = _.pipe [
+  methods
+  k.read "method"
+  k.poke _.toLowerCase
+  k.poke _.get
+]
 
-signatures = (context) -> property "signatures", method context
+signatures = _.pipe [ method, k.poke _.get "signatures" ]
 
-request = (context) -> property "request", signatures context
+request = _.pipe [ signatures, k.poke _.get "request" ]
 
-response = (context) -> property "response", signatures context
+response = _.pipe [ signatures, k.poke _.get "response" ]
 
-accept = (context) ->
-  "application/json" if (property "schema", response context)?
+accept = _.pipe [
+  response
+  k.poke _.get "mediatype"
+  k.test _.isDefined, _.pipe [
+    k.poke _.join ","
+    k.poke (type) -> type ? "application/json"
+  ]
+]
 
-media = (context) ->
-  "application/json" if (property "schema", request context)?
+media = _.pipe [
+  request
+  k.poke _.get "mediatype"
+  k.test _.isDefined, _.pipe [
+    k.poke _.join ","
+    k.poke (type) -> type ? "application/json"
+  ]
+]
 
-expect =
+status = _.pipe [ response, k.poke _.get "status" ]
 
-  media: (context) ->
-    "application/json" if (property "schema", response context)?
-
-  status: (context) -> property "status", response context
-
-accessors = {resource, template, methods, method,
-  signatures, request, response, accept, media, expect}
-
-export default accessors
+export {
+  resource
+  template
+  methods
+  method
+  signatures
+  request
+  response
+  accept
+  media
+  status
+}
