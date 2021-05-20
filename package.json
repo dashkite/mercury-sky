@@ -29,15 +29,18 @@
     "src"
   ],
   "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@dashkite/genie": "file:../genie",
+    "@dashkite/genie-presets": "file:../genie-presets",
     "amen": "^3.0.0",
+    "coffeescript": "^2.5.1",
     "faker": "^5.5.3",
     "node-fetch": "^2.6.1"
   },
   "dependencies": {
-    "@dashkite/genie": "^0.1.0",
-    "@dashkite/joy": "^0.1.7",
-    "@dashkite/katana": "0.4.5",
-    "@dashkite/masonry": "^0.7.1",
+    "@dashkite/joy": "^0.3.0",
+    "@dashkite/katana": "file:../katana",
+    "@dashkite/masonry": "^0.10.2",
     "@dashkite/mercury": "file:../mercury",
     "panda-quill": "^5.0.0",
     "url-template": "^2.0.8"
