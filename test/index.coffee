@@ -13,7 +13,7 @@ global.Request ?= fetch.Request
 
 do ->
 
-  print await test "Mercury Zinc: HTTP Combinators For Sky",  [
+  print await test "Mercury Sky: HTTP Combinators For Sky",  [
 
     test
       description: "get key"

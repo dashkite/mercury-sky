@@ -42,7 +42,6 @@
     "@dashkite/katana": "^0.4.7",
     "@dashkite/masonry": "^0.10.3",
     "@dashkite/mercury": "^0.2.3",
-    "panda-quill": "^5.0.0",
     "url-template": "^2.0.8"
   }
 }
