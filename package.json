@@ -12,7 +12,16 @@
     "url": "git+https://github.com/dashkite/mercury-sky.git"
   },
   "license": "SEE LICENSE IN LICENSE.md",
-  "author": "",
+  "contributors": [
+    {
+      "name": "Dan Yoder",
+      "email": "dan@pandastrike.com"
+    },
+    {
+      "name": "David Harper",
+      "email": "david@pandastrike.com"
+    }
+  ],
   "exports": {
     ".": {
       "import": "./build/import/src/index.js",
