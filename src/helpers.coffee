@@ -33,8 +33,8 @@ discover = _.flow [
     # m.cache "discover"
     m.expect.ok
   ]
-  m.response [ m.json ]
-  _.get "json"
+  m.json
+  k.get
 ]
 
 # TODO use the error / messages code from atlas?

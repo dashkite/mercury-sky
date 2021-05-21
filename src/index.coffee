@@ -3,6 +3,7 @@ import * as m from "@dashkite/mercury"
 import * as k from "@dashkite/katana"
 import * as ks from "@dashkite/katana/sync"
 import * as a from "./accessors"
+
 import {
   setter
   discover as _discover
@@ -29,14 +30,17 @@ method = setter.sync ks.assign _.pipe [
   a.methods
 
   ks.poke _.keys
-  ks.test (_.negate _.flip _.includes), _.pipe [
+  ks.test (_.negate _.includes), _.pipe [
     k.context
     k.peek failure "method not allowed"
   ]
 
+
   a.accept
-  m.accept
-  m.expect.media
+  ks.test _.isDefined, _.pipe [
+    m.accept
+    m.expect.media
+  ]
 
   a.media
   m.media

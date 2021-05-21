@@ -38,7 +38,7 @@
     "node-fetch": "^2.6.1"
   },
   "dependencies": {
-    "@dashkite/joy": "^0.3.2",
+    "@dashkite/joy": "^0.3.3",
     "@dashkite/katana": "file:../katana",
     "@dashkite/masonry": "^0.10.3",
     "@dashkite/mercury": "file:../mercury",
