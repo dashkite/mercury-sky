@@ -39,9 +39,9 @@
   },
   "dependencies": {
     "@dashkite/joy": "^0.3.3",
-    "@dashkite/katana": "file:../katana",
+    "@dashkite/katana": "^0.4.6",
     "@dashkite/masonry": "^0.10.3",
-    "@dashkite/mercury": "file:../mercury",
+    "@dashkite/mercury": "^0.2.2",
     "panda-quill": "^5.0.0",
     "url-template": "^2.0.8"
   }
