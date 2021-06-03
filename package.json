@@ -24,19 +24,18 @@
   ],
   "exports": {
     ".": {
-      "import": "./build/import/src/index.js",
-      "node": "./build/node/src/index.js"
-    },
-    "./*": {
-      "import": "./build/import/src/*.js",
-      "node": "./build/node/src/*.js"
+      "browser": "./build/browser/src/index.js"
     }
   },
   "files": [
-    "build/import/src",
-    "build/node/src",
-    "src"
+    "build/browser/src"
   ],
+  "dependencies": {
+    "@dashkite/joy": "^0.3.7",
+    "@dashkite/katana": "^0.4.8",
+    "@dashkite/mercury": "^0.2.3",
+    "url-template": "^2.0.8"
+  },
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@dashkite/genie": "^0.5.2",
@@ -46,11 +45,5 @@
     "coffeescript": "^2.5.1",
     "faker": "^5.5.3",
     "node-fetch": "^2.6.1"
-  },
-  "dependencies": {
-    "@dashkite/joy": "^0.3.7",
-    "@dashkite/katana": "^0.4.8",
-    "@dashkite/mercury": "^0.2.3",
-    "url-template": "^2.0.8"
   }
 }
