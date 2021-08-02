@@ -36,7 +36,7 @@
   "dependencies": {
     "@dashkite/joy": "^0.3.11",
     "@dashkite/katana": "^0.4.8",
-    "@dashkite/mercury": "^0.2.4"
+    "@dashkite/mercury": "^0.2.5"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
