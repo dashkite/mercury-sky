@@ -7,7 +7,6 @@ import * as a from "./accessors"
 import {
   setter
   discover as _discover
-  allowed
   failure
 } from "./helpers"
 

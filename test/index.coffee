@@ -20,7 +20,7 @@ do ->
       wait: false
       ->
         assert.equal true,
-          _.isString await Key.get "https://kiki-api.dashkite.com"
+          _.isString await Key.get "https://breeze-api.dashkite.com"
   ]
 
   process.exit if success then 0 else 1
