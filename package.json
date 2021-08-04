@@ -36,13 +36,13 @@
   "dependencies": {
     "@dashkite/joy": "^0.3.11",
     "@dashkite/katana": "^0.4.8",
-    "@dashkite/mercury": "file:../mercury"
+    "@dashkite/mercury": "^0.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.8",
+    "@babel/core": "^7.15.0",
     "@dashkite/genie": "^0.5.4",
-    "@dashkite/genie-presets": "^0.4.10",
-    "@dashkite/masonry": "^0.11.9",
+    "@dashkite/genie-presets": "^0.4.12",
+    "@dashkite/masonry": "^0.11.11",
     "amen": "^3.0.0",
     "coffeescript": "^2.5.1",
     "faker": "^5.5.3",
