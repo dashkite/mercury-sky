@@ -25,14 +25,13 @@ setter =
           f
         ]
 
-discover = _.flow [
-  m.request [
-    m.url
-    m.method "get"
-    m.accept "application/json"
-    # m.cache "discover"
-    m.expect.ok
-  ]
+discover = m.start [
+  m.url
+  m.method "get"
+  m.accept "application/json"
+  # m.cache "discover"
+  m.expect.ok
+  m.request
   m.json
   k.get
 ]

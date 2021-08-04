@@ -5,21 +5,18 @@ import * as $ from "../src/index"
 
 Key =
 
-  get:
-    _.flow [
-      m.request [
-        $.discover
-        _.pipe [
-          $.resource "public keys"
-          $.method "get"
-          m.parameters type: "encryption"
-          # m.cache "test"
-
-        ]
-      ]
-      m.text
-      k.get
+  get: m.start [
+    $.discover
+    _.pipe [
+      $.resource "public keys"
+      $.method "get"
+      m.parameters type: "encryption"
+      # m.cache "test"
     ]
+    m.request
+    m.text
+    k.get
+  ]
 
 export {
   Key
