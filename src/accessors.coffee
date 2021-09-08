@@ -1,4 +1,5 @@
 import * as _ from "@dashkite/joy"
+import * as It from "@dashkite/joy/iterable"
 import * as k from "@dashkite/katana/sync"
 
 resource = _.pipe [
@@ -43,7 +44,11 @@ media = _.pipe [
   ]
 ]
 
-status = _.pipe [ response, k.poke _.get "status" ]
+status = _.pipe [
+  response
+  k.poke _.get "status" 
+  k.poke It.select (status) -> 200 <= status < 300
+]
 
 export {
   resource
